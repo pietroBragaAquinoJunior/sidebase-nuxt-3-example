@@ -13,10 +13,21 @@
       <p class="text-white">
         Dados: {{ data }}
       </p>
+      <p>
+        {{ auth }}
+      </p>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+
+const auth = await useAuth().getSession()
+
 const { data, error } = await useFetch('http://localhost:3000/api/example')
+
+
+onBeforeMount(() => {
+  auth
+})
 </script>
